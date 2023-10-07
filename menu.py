@@ -95,7 +95,7 @@ def options():
                              pygame.mixer.music.unpause() 
                              mute = False                 
                 if REI_BUTTON.checkForInput(mouse):
-                        options()#reiniciar()
+                        options() #reiniciar()
                 if SAIR_BUTTON.checkForInput(mouse):
                         pygame.quit()
                         sys.exit()
