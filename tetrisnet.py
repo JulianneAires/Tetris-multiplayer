@@ -71,6 +71,10 @@ def colisao(forma, x, y, grid):
                     return True
     return False
 
+def girar_forma(forma):
+    return list(zip(*forma[::-1]))
+
+
 def main():
     global grid
 
@@ -100,7 +104,9 @@ def main():
             y += 30
             if colisao(forma_atual, x, y, grid):
                 y -= 30
-
+   
+        if keys[pygame.K_SPACE]:
+            forma_atual = girar_forma(forma_atual)
         if not colisao(forma_atual, x, y + 30, grid):
             tempo_queda += 1
             if tempo_queda >= velocidade_queda:
