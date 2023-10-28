@@ -43,16 +43,18 @@ def desenhar_forma(forma, x, y, cores_formas ):
                 pygame.draw.rect(tela, cores_formas , (x + coluna * 30, y + linha * 30, 30, 30))
                 pygame.draw.rect(tela, preto, (x + coluna * 30, y + linha * 30, 30, 30), 2)
 
+
 def desenhar_grade(surface):
     cor_grade = (128, 128, 128)
     espacamento = 30
     # Linhas horizontais
-    for linha in range(altura // espacamento):
+    for linha in range((altura // espacamento)):
         pygame.draw.line(surface, cor_grade, (0, linha * espacamento), (largura, linha * espacamento))
 
     # Linhas verticais
-    for coluna in range(largura // espacamento):
+    for coluna in range((largura - 50) // espacamento):
         pygame.draw.line(surface, cor_grade, (coluna * espacamento, 0), (coluna * espacamento, altura))
+
 
 def colisao(forma, x, y, grid):
     for linha in range(len(forma)):
@@ -82,7 +84,7 @@ def main():
     x, y = largura // 2 - 15, 0
     forma_atual = criar_forma()
     cor_atual = cores_formas[formas.index(forma_atual)]
-    velocidade_queda = 2
+    velocidade_queda = 3
     tempo_queda = 0
 
     while True:
@@ -101,9 +103,9 @@ def main():
             if colisao(forma_atual, x, y, grid):
                 x -= 30
         if keys[pygame.K_DOWN]:
-            y += 30
-            if colisao(forma_atual, x, y, grid):
-                y -= 30
+            while not colisao(forma_atual, x, y, grid):
+                y += 30
+            y -= 30  
    
         if keys[pygame.K_SPACE]:
             forma_atual = girar_forma(forma_atual)
@@ -113,6 +115,11 @@ def main():
                 y += 30
                 tempo_queda = 0
         else:
+            if y <= 0:  # Verifica se o a peça está no topo da tela
+                print("Game Over") 
+                pygame.quit()
+                quit()
+
             # Bloqueia o bloco caso ele tenha chegado ao fim 
             for linha in range(len(forma_atual)):
                 for coluna in range(len(forma_atual[linha])):
@@ -143,7 +150,7 @@ def main():
         desenhar_forma(forma_atual, x, y, cor_atual)
 
         pygame.display.update()
-        clock.tick(5)
+        clock.tick(8) # aumentar o tempo de reação do jogo às teclas
 
 if __name__ == "__main__":
     main()
