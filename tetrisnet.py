@@ -49,7 +49,7 @@ def desenhar_grade(surface):
     espacamento = 30
     # Linhas horizontais
     for linha in range((altura // espacamento)):
-        pygame.draw.line(surface, cor_grade, (0, linha * espacamento), (largura, linha * espacamento))
+        pygame.draw.line(surface, cor_grade, (0, linha * espacamento), ((largura - 100), linha * espacamento))
 
     # Linhas verticais
     for coluna in range((largura - 50) // espacamento):
