@@ -1,17 +1,18 @@
 # importando bibliotecas
-import pygame, sys
+import pygame
+import sys
 from button import Button
-from tetrisnet import play
+from tetrisnet import *
 
 # inicializando o pygame
 pygame.init()
 
 # configurações de música
-'''pygame.mixer.init()
-pygame.mixer.music.load ("soundtrack/Original Tetris theme (Tetris Soundtrack).mp3")
-pygame.mixer.music.set_volume (0.7)
-pygame.mixer.music.play()
-mute = False'''
+#pygame.mixer.init()
+#pygame.mixer.music.load ("soundtrack/Original Tetris theme (Tetris Soundtrack).mp3")
+#pygame.mixer.music.set_volume (0.7)
+#pygame.mixer.music.play()
+#mute = False
 
 #definindo tamanho e titulo da janela
 largura = 400
@@ -170,3 +171,4 @@ def main_menu():
         pygame.display.update()
 
 main_menu()
+
